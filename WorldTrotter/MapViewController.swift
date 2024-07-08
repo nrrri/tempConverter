@@ -10,7 +10,7 @@ import MapKit
 
 class MapViewController: UIViewController {
     
-    let pointOfInterestSwitch = UISwitch()
+    var pointOfInterestSwitch = UISwitch()
     
     var mapView: MKMapView!
     
@@ -37,13 +37,13 @@ class MapViewController: UIViewController {
         return label
     }
     
-    func addSwitch() -> UISwitch {
+    func addSwitch() {
         let toggle = UISwitch()
         toggle.translatesAutoresizingMaskIntoConstraints = false
         toggle.setOn(true, animated: true)
         toggle.addTarget(self, action: #selector(updateSwitch), for: .valueChanged)
         self.view.addSubview(toggle)
-        return toggle
+        self.pointOfInterestSwitch = toggle
     }
     
     func addSegmentControl(items: [String]) -> UISegmentedControl {
@@ -67,7 +67,7 @@ class MapViewController: UIViewController {
         let pointOfInterestLabel = addLabel(text: "Point of interest")
         
         // Create Switch
-        let pointOfInterestSwitch = addSwitch()
+        addSwitch()
 
         // Layout
         // Segment
